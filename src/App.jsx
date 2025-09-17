@@ -1,8 +1,61 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "./contexts/theme-context";
+import Layout from "./routes/Layout";
+import DashboardPage from "./routes/dashboard/page";
+
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <DashboardPage />,
+        },
+        {
+          path: "analytics",
+          element: <h1 className="title">Analytics</h1>,
+        },
+        {
+          path: "reports",
+          element: <h1 className="title">Reports</h1>,
+        },
+        {
+          path: "customers",
+          element: <h1 className="title">Customers</h1>,
+        },
+        {
+          path: "new-customer",
+          element: <h1 className="title">New customer</h1>,
+        },
+        {
+          path: "verified-customers",
+          element: <h1 className="title">Verified Customers</h1>,
+        },
+        {
+          path: "products",
+          element: <h1 className="title">Products</h1>,
+        },
+        {
+          path: "new-product",
+          element: <h1 className="title">New Product</h1>,
+        },
+        {
+          path: "inventory",
+          element: <h1 className="title">Inventory</h1>,
+        },
+        {
+          path: "settings",
+          element: <h1 className="title">Settings</h1>,
+        },
+      ],
+    },
+  ]);
   return (
-    <div className="bg-pink-700 font-bold text-[3rem] h-screen text-white flex justify-center items-center">
-      Sondos is a Queen 👑🎀
-    </div>
+    <ThemeProvider storageKey="theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 
